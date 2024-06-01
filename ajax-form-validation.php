@@ -121,6 +121,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		
 		 }
 
+		 public function target_project_new_project(){
+			ob_start();
+			require_once plugin_dir_path(__FILE__) . "inclides/template/new_project.php"; 
+			$template = ob_get_contents();
+			ob_end_clean();
+			echo $template;
+		}
+	
+
  }
 
 /**
