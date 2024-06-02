@@ -130,6 +130,7 @@
 			</div> -->
 			<div class="row">
     			<div class="col-sm-6">
+					<?php wp_nonce_field('new_project_form'); ?>
 					<button type="submit" name="submit" id="submit" class="btn btn-default">Submit Project </button>
 				</div>
 			</div>

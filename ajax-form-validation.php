@@ -34,9 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			register_activation_hook( __FILE__, [$this , 'target_ajax_activate'] );
 
-			add_action('plugin_loaded',[$this,'target_ajax_init_plugin']);
-
-			add_action('admin_menu', [$this,'target_ajax_admin_menu']); // menu register
+			add_action('plugin_loaded', [$this,'target_ajax_init_plugin']);
+			add_action('admin_enqueue_scripts', [$this, 'target_ajax_form_enqueue_styles']);
 
 		}
 
@@ -63,6 +62,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			define('TARGET_AJAX_PATH',__DIR__);
 			define('TARGET_AJAX_URL', plugins_url('',TARGET_AJAX_FILE));
 			define('TARGET_AJAX_ASSETS', TARGET_AJAX_URL . '/assets');
+
+			define('TARGET_AJAX_PATH',plugin_dir_path(__FILE__));
 		}
 
 
@@ -71,8 +72,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		public function target_ajax_activate(){
 
-			//add_action('admin_menu', [$this,'target_ajax_admin_menu']);
-			//require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/menu.php';
 
 		}
 
@@ -82,53 +81,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		public function target_ajax_init_plugin(){
 
+				do_action('TARGET_AJAX_Lodaded');
+
+				$this->include();
+
+		}
+
+		public function include(){
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/menu.php';
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/form_validation_check.php';
 		}
 
 
-		public function target_ajax_admin_menu(){
+		public function target_ajax_form_enqueue_styles(){
 
-			add_menu_page(
-				'Target Project',
-				'Target Project',
-				'manage_options',
-				'project_list_plugin',
-				array($this,"target_project_new_project"),
-				'dashicons-menu-alt',
-				9
-			);
-	
-			add_submenu_page(
-				'project_list_plugin',
-				'New Project',
-				'New Project',
-				'manage_options',
-				'project_list_plugin',
-				array($this,"target_project_new_project"),
-				'dashicons-menu-alt',
-				9
-			);
-	
-			add_submenu_page(
-				'project_list_plugin',
-				'All Project',
-				'All Project',
-				'manage_options',
-				'custom-plugin',
-				array($this,"target_project_view_project"),
-				'dashicons-menu-alt',
-				9
-			);
-		
-		 }
+		//var_dump(plugin_dir_path());
+			
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/ajax_form_validation.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'assets/css/bootstrap.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'dataTables', plugin_dir_url( __FILE__ ) . 'assets/css/dataTables.bootstrap5.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css', array(), $this->version, 'all' );
 
-		 public function target_project_new_project(){
-			ob_start();
-			require_once plugin_dir_path(__FILE__) . "inclides/template/new_project.php"; 
-			$template = ob_get_contents();
-			ob_end_clean();
-			echo $template;
 		}
-	
 
  }
 
