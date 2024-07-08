@@ -1,6 +1,6 @@
 <div class="container newProject">
 			<h2> Add New Project</h2>
-			<form action="javascript:void(0)" id="target_new_project_list">
+			<form action="" method="post" id="target_new_project_list">
 			<div class="row">
     			<div class="col-sm-6">
 					<div class="form-group">

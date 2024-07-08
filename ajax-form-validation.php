@@ -24,18 +24,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
  final class Target_Ajax_Form{
 	
-    /**  Plugin Version  */
-	const version ='1.0.0';
 	 
 	/* Class Construct */
 		private function  __construct(){
 
 			$this->define_constants();
 
-			register_activation_hook( __FILE__, [$this , 'target_ajax_activate'] );
 
 			add_action('plugin_loaded', [$this,'target_ajax_init_plugin']);
 			add_action('admin_enqueue_scripts', [$this, 'target_ajax_form_enqueue_styles']);
+
+			
+			register_activation_hook( __FILE__, [$this , 'target_ajax_activate'] );
 
 		}
 
@@ -55,15 +55,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 
 
-		public function define_constants(){
+		public function define_constants() {
 
-			define('TARGET_AJAX_VERSION', self::version);
+			define('TARGET_AJAX_VERSION', '1.0.0');
 			define('TARGET_AJAX_FILE',__FILE__);
 			define('TARGET_AJAX_PATH',__DIR__);
 			define('TARGET_AJAX_URL', plugins_url('',TARGET_AJAX_FILE));
 			define('TARGET_AJAX_ASSETS', TARGET_AJAX_URL . '/assets');
-
-			define('TARGET_AJAX_PATH',plugin_dir_path(__FILE__));
 		}
 
 
@@ -72,7 +70,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		public function target_ajax_activate(){
 
-
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/installer.php';
+				
+			$installer = new AjaxForm\Installer\InstallPlugin();
+			$installer->installPlugins();
 		}
 
 
@@ -90,6 +91,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		public function include(){
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/menu.php';
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/form_validation_check.php';
+
+			$form_check = new Form_Validation_check\Form_Validation_Check();
+			$form_check->init();
 		}
 
 
@@ -97,10 +101,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		//var_dump(plugin_dir_path());
 			
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/ajax_form_validation.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'assets/css/bootstrap.min.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'dataTables', plugin_dir_url( __FILE__ ) . 'assets/css/dataTables.bootstrap5.min.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'plugin-name', plugin_dir_url( __FILE__ ) . 'assets/css/ajax_form_validation.css', array(), TARGET_AJAX_VERSION, 'all' );
+		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'assets/css/bootstrap.min.css', array(), TARGET_AJAX_VERSION, 'all' );
+		wp_enqueue_style( 'dataTables', plugin_dir_url( __FILE__ ) . 'assets/css/dataTables.bootstrap5.min.css', array(), TARGET_AJAX_VERSION, 'all' );
+		wp_enqueue_style( 'style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css', array(), TARGET_AJAX_VERSION, 'all' );
 
 		}
 
