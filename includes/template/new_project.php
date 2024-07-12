@@ -25,7 +25,7 @@
 				</div>
 			</div>
 
-<!-- 
+
 			<div class="row">
     			<div class="col-sm-6">
 					<div class="form-group">
@@ -127,7 +127,7 @@
 						</select>
 					</div>
 				</div>
-			</div> -->
+			</div> 
 			<div class="row">
     			<div class="col-sm-6">
 					<?php wp_nonce_field('new_project_form'); ?>

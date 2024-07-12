@@ -74,6 +74,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 			$installer = new AjaxForm\Installer\InstallPlugin();
 			$installer->installPlugins();
+
+
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/functions.php';
 		}
 
 
