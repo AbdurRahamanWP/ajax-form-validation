@@ -3,66 +3,39 @@
     <table id="project_list" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Project Title</th>
+                <th>Sub Title</th>
+                <th>Developer</th>
+                <th>Start Date</th>
+                <th>DateLine</th>
+                <th>Referance</th>
+                <th>Project Value</th>
+                <th>Due Amount</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            <?php 
+                global $wpdb;
+                $result = $wpdb->get_results ( "SELECT * FROM target_project_info" );
+                foreach ( $result as $print ){
+            ?>
             <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
+                <td><?php echo $print->project_name; ?></td>
+                <td><?php echo $print->project_sub_title; ?></td>
+                <td><?php echo $print->pro_developer; ?></td>
+                <td><?php echo $print->start_date; ?></td>
+                <td><?php echo $print->end_date; ?></td>
+                <td><?php echo $print->pro_referance; ?></td>
+                <td><?php echo $print->total_price; ?></td>
+                <td><?php echo $print->due_amount; ?></td>
+                <td><?php echo $print->pro_status; ?></td>
+                <td><a herf="#"> View </a> || <a herf="#"> Edit </a> || <a herf="#"> Delete</a></td>
             </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011-07-25</td>
-                <td>$170,750</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009-01-12</td>
-                <td>$86,000</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-                <td>2012-03-29</td>
-                <td>$433,060</td>
-            </tr>
-            <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
-                <td>2008-11-28</td>
-                <td>$162,700</td>
-            </tr>
-       
+            <?php
+                }
+            ?>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
     </table>
 </div>

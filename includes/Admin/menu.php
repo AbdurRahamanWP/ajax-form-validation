@@ -59,7 +59,7 @@ namespace Ajax_form_validation;
 
 	public function target_ajax_form_all(){
 		ob_start();
-		require_once TARGET_AJAX_PATH . "/includes/template/new_project.php"; 
+		require_once TARGET_AJAX_PATH . "/includes/template/view_project.php"; 
 		$template = ob_get_contents();
 		ob_end_clean();
 		echo $template;

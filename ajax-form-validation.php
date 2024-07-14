@@ -54,9 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			return $instance;
 		}
 
-
 		public function define_constants() {
-
 			define('TARGET_AJAX_VERSION', '1.0.0');
 			define('TARGET_AJAX_FILE',__FILE__);
 			define('TARGET_AJAX_PATH',__DIR__);
@@ -74,9 +72,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 			$installer = new AjaxForm\Installer\InstallPlugin();
 			$installer->installPlugins();
-
-
-			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/functions.php';
+			
+			
 		}
 
 
@@ -94,6 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		public function include(){
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/menu.php';
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/form_validation_check.php';
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/functions.php';
 
 			$form_check = new Form_Validation_check\Form_Validation_Check();
 			$form_check->init();
