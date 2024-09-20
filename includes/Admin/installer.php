@@ -27,7 +27,6 @@
                 `dev_email` varchar(20) NOT NULL,
                 `dev_phone` varchar(20) NOT NULL,
                 `pro_status` varchar(20) NOT NULL,
-                `pro_media` varchar(20) NOT NULL,
                 PRIMARY KEY (`id`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 

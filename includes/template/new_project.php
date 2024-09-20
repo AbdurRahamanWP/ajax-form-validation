@@ -1,4 +1,10 @@
 <div class="container newProject">
+	       <?php 
+		    	if( isset( $_GET['inserted'] )){ ?>
+			<h4 class='successfull'>Data Inserted Successfully</h4>
+			<?php } ?>
+
+
 			<h2> Add New Project</h2>
 			<form action="" method="post" id="target_new_project_list">
 			<div class="row">

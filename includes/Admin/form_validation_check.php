@@ -46,27 +46,26 @@ class Form_Validation_Check{
 
 
       $dataInsertSuccess =  target_project_new_add([
-        'name'      => $name,
-        'sub_title'     => $sub_title,
-        'description'   => $description,
-        'referance'     => $referance,
-        'category'      => $category,
-        'start_date'    => $start_date,
-        'end_date'      => $end_date,
-        'proje_price'   => $proje_price,
-        'pay_amount'    => $pay_amount,
-        'due_amount'    => $due_amount,
-        'dateline'      => $dateline,
-        'dev_name'      => $dev_name,
-        'dev_email'     => $dev_email,
-        'dev_phone'     => $dev_phone,
-        'status'        => $status
+        'project_name'       => $name,
+        'project_sub_title'  => $sub_title,
+        'pro_description'    => $description,
+        'pro_referance'      => $referance,
+        'pro_cate'           => $category,
+        'start_date'         => $start_date,
+        'end_date'           => $end_date,
+        'total_price'        => $proje_price,
+        'pay_amount'         => $pay_amount,
+        'due_amount'         => $due_amount,
+        'pro_developer'      => $dev_name,
+        'dev_email'          => $dev_email,
+        'dev_phone'          => $dev_phone,
+        'pro_status'         => $status
        ]);
 
        if( is_wp_error($dataInsertSuccess) ){
             echo "Data Insert Faild";
        }
-       $redierecto = admin_url('','admin');
+       
 
        //var_dump($_POST);
        exit();

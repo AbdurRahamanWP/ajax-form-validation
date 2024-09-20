@@ -1,5 +1,4 @@
 <?php
- namespace AjaxForm\AddNewProject;
 
 
     /*  
@@ -10,30 +9,28 @@
     function target_project_new_add( $args = [] ){
          global $wpdb;
 
-         if( empty($data['name']) ){
+         if( empty($args['project_name']) ){
             return new \WP_Error('no-name',__('Please Enter The Project Name'),' target-ajax-form');  
         }
 
         $defults = [
-            'name' => '',
-            'sub_title' => '',
-            'namdescriptione' => '',
-            'referance' => '',
-            'category' => '',
+            'project_name' => '',
+            'project_sub_title' => '',
+            'pro_description' => '',
+            'pro_referance' => '',
+            'pro_cate' => '',
             'start_date' => '',
             'end_date' => '',
-            'project_price' => '',
+            'total_price' => '',
             'pay_amount' => '',
             'due_amount' => '',
-            'dateline' => '',
-            'dev_name' => '',
+            'pro_developer' => '',
             'dev_email' => '',
             'dev_phone' => '',
-            'status' => ''
+            'pro_status' => ''
         ];
 
         $data = wp_parse_args($args, $defults);
-
         $insteted =  $wpdb->insert(
                 'target_project_info',
                 $data,
@@ -51,14 +48,20 @@
                     '%s',
                     '%s',
                     '%s',
-                    '%s',
                     '%s'
-
                 ]
             );
+            
+
         if( !$insteted ){
             return new \WP_Error('Faild-to-install',__('Faild To Install Data'),' target-ajax-form');
+        
+        }else{
+            echo "<script>alert('Data Save Successfully !');</script>";
+            $redierecto = admin_url('admin.php?page=project_new_form&inserted=true');
+            wp_redirect( $redierecto );
         }
+
 
         return $wpdb->return_id;
     }
@@ -101,6 +104,39 @@
     function target_project_count( $args = [] ){
         global $wpdb;
         return (int) $wpdb->get_var("SELECT count(id) FROM target_project_info");
+    }
+
+
+
+    /*  
+    Data edit function
+
+    */
+    function target_project_edit($id){
+
+        global $wpdb;
+
+       return $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM target_project_info WHERE id=%d", $id)
+       );
+
+    }
+
+
+    /*  
+    Data delete function
+
+    */
+    function target_project_delete($id){
+
+        global $wpdb;
+
+        return $wpdb->delete(
+            'target_project_info',
+            ['id' => $id],
+            ['%d']
+        );
+
     }
 
 ?>

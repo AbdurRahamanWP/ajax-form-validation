@@ -36,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			
 			register_activation_hook( __FILE__, [$this , 'target_ajax_activate'] );
+			register_deactivation_hook( __FILE__, [$this , 'deactivate_target_project_list'] );
 
 		}
 
@@ -67,12 +68,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * Do stuff upon plugin activation
 		 */
 		public function target_ajax_activate(){
-
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/installer.php';
 				
 			$installer = new AjaxForm\Installer\InstallPlugin();
-			$installer->installPlugins();
+			$installer->installPlugins();			
+		}
+
+
+		/**
+		 * Do stuff upon plugin Deactivation
+		 */
+		public function deactivate_target_project_list(){
 			
+			global $wpdb;
+			$wpdb->query("DROP TABLE IF EXISTS target_project_info");	
 			
 		}
 
@@ -81,17 +90,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * Initialize the plugin
 		 */
 		public function target_ajax_init_plugin(){
-
 				do_action('TARGET_AJAX_Lodaded');
-
 				$this->include();
-
 		}
 
 		public function include(){
+			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/functions.php';
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/menu.php';
 			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/form_validation_check.php';
-			require_once plugin_dir_path( __FILE__ ) . 'includes/Admin/functions.php';
+
 
 			$form_check = new Form_Validation_check\Form_Validation_Check();
 			$form_check->init();

@@ -27,3 +27,10 @@ body{
 .newProject input{
     min-height: 45px !important;
 }
+
+h4.successfull {
+    background-color: #2271b1;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    width: 100%;
+}
