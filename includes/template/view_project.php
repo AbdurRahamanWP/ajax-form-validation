@@ -1,6 +1,6 @@
 <div class="container">
 	<h2> All Project</h2>
-    <table id="project_list" class="table table-striped" style="width:100%">
+    <table id="project_list" class="table table-striped display" style="width:100%">
         <thead>
             <tr>
                 <th>Project Title</th>

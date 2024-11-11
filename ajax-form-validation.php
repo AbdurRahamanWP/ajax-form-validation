@@ -109,10 +109,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		//var_dump(plugin_dir_path());
 			
-		wp_enqueue_style( 'plugin-name', plugin_dir_url( __FILE__ ) . 'assets/css/ajax_form_validation.css', array(), TARGET_AJAX_VERSION, 'all' );
+		wp_enqueue_style( 'ajax_form_validation', plugin_dir_url( __FILE__ ) . 'assets/css/ajax_form_validation.css', array(), TARGET_AJAX_VERSION, 'all' );
 		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'assets/css/bootstrap.min.css', array(), TARGET_AJAX_VERSION, 'all' );
-		wp_enqueue_style( 'dataTables', plugin_dir_url( __FILE__ ) . 'assets/css/dataTables.bootstrap5.min.css', array(), TARGET_AJAX_VERSION, 'all' );
+		wp_enqueue_style( 'dataTables', plugin_dir_url( __FILE__ ) . 'assets/css/dataTables.dataTables.min.css', array(), TARGET_AJAX_VERSION, 'all' );
 		wp_enqueue_style( 'style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css', array(), TARGET_AJAX_VERSION, 'all' );
+
+		wp_enqueue_script( 'dataTables_min', plugin_dir_url( __FILE__ ) . 'assets/js/dataTables.min.js', array(), TARGET_AJAX_VERSION, 'all' );
+		
 
 		}
 
