@@ -34,3 +34,9 @@ h4.successfull {
     padding: 10px 15px;
     width: 100%;
 }
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1366px;
+    }
+}

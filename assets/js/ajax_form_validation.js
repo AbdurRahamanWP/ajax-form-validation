@@ -39,8 +39,28 @@ jQuery(function(){
 	})
 
 
+
+	jQuery("#target_new_project_list").validate({
+        submitHandler: function () {
+            var postdata = "action=my_project_action&param=savedata&" + jQuery('#target_new_project_list').serialize();
+            jQuery.post(data.ajax_url, postdata, function (response) {
+                console.log(response);
+                var data = jQuery.parseJSON(response);
+                if (data.status == 1) {
+                    jQuery.notifyBar({
+                        cssClass: "success",
+                        html: data.message
+                    });
+                }
+            })
+
+        }
+    });
+
+
 });
 
+let table = new DataTable('#project_list');
 
 
 })( jQuery );
